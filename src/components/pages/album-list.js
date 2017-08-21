@@ -10,8 +10,6 @@ class AlbumList extends React.Component {
         const albumlijst = this.props.albums.map((album) => {
             return <div key={album.id}>{album.title} | {album.artist}</div>
         })
-        console.log('are we accessing the state?', this.props.albums);
-        
         return(
             <div>
                 {albumlijst}
