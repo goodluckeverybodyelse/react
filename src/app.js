@@ -32,7 +32,7 @@ render (
 //     console.log('the current state is', store.getState());
 // })
 
-store.dispatch(addAlbum()
+// store.dispatch(addAlbum()
 
 // store.dispatch({type: 'UPDATE_ALBUM', payload: 
 //     {id: 4, title: 'black sands', artist: 'bonobo' }
