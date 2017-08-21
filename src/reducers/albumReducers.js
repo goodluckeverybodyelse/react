@@ -1,7 +1,10 @@
 export  const albumReducer = (state={albums:
-    [{id: 1, title: 'hey', artist:'hello'}, {id: 3, title: 'north borders', artist: 'bonobo'}]
-    }, action) => {
-    switch(action.type) {
+        [
+            {id: 1, title: '99', artist: 'Kaytranada'},
+            {id: 2, title: 'Skin', artist: 'Flume'}
+        ]} , action) => {
+    
+            switch(action.type) {
         case 'ADD_ALBUM':
             return {albums:[...state.albums, ...action.payload]};
             break;
@@ -18,9 +21,11 @@ export  const albumReducer = (state={albums:
             }
             // console.log('updated album looks like: ', newAlbum);
             return {albums: [...albumToUpdate.slice(0, updateIndex), newAlbum, ...albumToUpdate.slice(updateIndex + 1 )]}
-        
+            break;
         case 'GET_ALBUMS':
             return {...state, albums: [...state.albums]}
-    }
+            break;  
+        }       
+
     return state;
 }

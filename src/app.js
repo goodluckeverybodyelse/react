@@ -3,7 +3,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import  reducers from './reducers/index'; 
 import { addToCart } from './actions/cartActions';
-import { addAlbum, updateAlbum, deleteAlbum } from './actions/albumActions';
+import { addAlbum, updateAlbum, deleteAlbum, getAlbums } from './actions/albumActions';
 import logger from 'redux-logger'
 import React from 'react'
 import {render} from 'react-dom'
@@ -38,8 +38,7 @@ render (
 //     {id: 4, title: 'black sands', artist: 'bonobo' }
 // })
 
-store.dispatch(updateAlbum({id:1, title: 'whats up nigga', artist: 'coolyo'}))
+// store.dispatch(getAlbums());
 
-store.dispatch(deleteAlbum({id:1}));
+// store.dispatch(addAlbum([{id: 3, title: 'Scenes', artist: 'Studio OST'}]))
 
-store.dispatch(addAlbum([{id: 8, title: 'space is only noise', artist: 'nicolas jaar'}, {id: 4, title: 'black sands', artist: 'bonobo'}]))

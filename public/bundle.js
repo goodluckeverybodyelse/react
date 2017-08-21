@@ -11302,11 +11302,9 @@ var store = (0, _redux.createStore)(_index2.default, middleware);
 //     {id: 4, title: 'black sands', artist: 'bonobo' }
 // })
 
-store.dispatch((0, _albumActions.updateAlbum)({ id: 1, title: 'whats up nigga', artist: 'coolyo' }));
+// store.dispatch(getAlbums());
 
-store.dispatch((0, _albumActions.deleteAlbum)({ id: 1 }));
-
-store.dispatch((0, _albumActions.addAlbum)([{ id: 8, title: 'space is only noise', artist: 'nicolas jaar' }, { id: 4, title: 'black sands', artist: 'bonobo' }]));
+// store.dispatch(addAlbum([{id: 3, title: 'Scenes', artist: 'Studio OST'}]))
 
 /***/ }),
 /* 98 */
@@ -11919,9 +11917,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var albumReducer = exports.albumReducer = function albumReducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { albums: [{ id: 1, title: 'hey', artist: 'hello' }, { id: 3, title: 'north borders', artist: 'bonobo' }]
-    };
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { albums: [{ id: 1, title: '99', artist: 'Kaytranada' }, { id: 2, title: 'Skin', artist: 'Flume' }] };
     var action = arguments[1];
+
 
     switch (action.type) {
         case 'ADD_ALBUM':
@@ -11942,10 +11940,12 @@ var albumReducer = exports.albumReducer = function albumReducer() {
             var newAlbum = _extends({}, albumToUpdate[updateIndex], { title: action.payload.title, artist: action.payload.artist
                 // console.log('updated album looks like: ', newAlbum);
             });return { albums: [].concat(_toConsumableArray(albumToUpdate.slice(0, updateIndex)), [newAlbum], _toConsumableArray(albumToUpdate.slice(updateIndex + 1))) };
-
+            break;
         case 'GET_ALBUMS':
             return _extends({}, state, { albums: [].concat(_toConsumableArray(state.albums)) });
+            break;
     }
+
     return state;
 };
 
@@ -24945,6 +24945,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(91);
 
+var _redux = __webpack_require__(33);
+
+var _albumActions = __webpack_require__(117);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24963,6 +24967,11 @@ var AlbumList = function (_React$Component) {
     }
 
     _createClass(AlbumList, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.getAlbums();
+        }
+    }, {
         key: 'render',
         value: function render() {
             var albumlijst = this.props.albums.map(function (album) {
@@ -24991,7 +25000,11 @@ function mapStateToProps(state) {
     };
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(AlbumList);
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ getAlbums: _albumActions.getAlbums }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AlbumList);
 
 /***/ })
 /******/ ]);

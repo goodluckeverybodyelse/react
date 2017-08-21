@@ -2,10 +2,15 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {getAlbums} from '../../actions/albumActions'
 
 
 
 class AlbumList extends React.Component {
+    componentDidMount() {
+        this.props.getAlbums();
+    }
     render() {
         const albumlijst = this.props.albums.map((album) => {
             return <div key={album.id}>{album.title} | {album.artist}</div>
@@ -24,5 +29,9 @@ function mapStateToProps(state) {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({getAlbums: getAlbums}, dispatch);
+}
 
-export default connect(mapStateToProps)(AlbumList);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumList);

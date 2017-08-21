@@ -25,4 +25,4 @@ export function getAlbums() {
     return {
         type: 'GET_ALBUMS'
     }
-}
+}   
